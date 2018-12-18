@@ -33,13 +33,23 @@ imports: [
 ],
 ```
 
-Finally use `plyr` in your components:
+Finally use `plyr` in your components as attribute:
+
+```html
+<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlay)="played($event)"></div>
+
+<button (click)="play()">Play</button>
+```
+
+or tag:
 
 ```html
 <plyr style="display:block; width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlay)="played($event)"></plyr>
 
 <button (click)="play()">Play</button>
 ```
+
+and the component file would have
 
 ```ts
 @ViewChild(PlyrComponent)

@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'plyr', // tslint:disable-line
+  selector: 'plyr, [plyr]', // tslint:disable-line
   templateUrl: './plyr.component.html',
   styleUrls: ['./plyr.component.css'],
   exportAs: 'plyr'
