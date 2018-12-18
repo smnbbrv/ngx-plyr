@@ -129,7 +129,7 @@ ngx-plyr events:
 * **plyrCueChange**: replicates original *cuechange* event
 * **plyrError**: replicates original *error* event
 
-* **plyrStateChange: replicates original *statechange* event
+* **plyrStateChange**: replicates original *statechange* event
 
 ## Getters and setters / Methods
 
