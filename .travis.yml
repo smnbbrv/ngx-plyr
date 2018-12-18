@@ -1,0 +1,32 @@
+dist: trusty
+sudo: false
+language: node_js
+
+node_js:
+  - '10'
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+branches:
+  only:
+    - master
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - npm run lint
+        - npm run test:app:ci
+        - npm run test:lib:ci
+        - npm run coveralls
+    - stage: deploy
+      script:
+        - npm run build:lib
+        - cp README.md dist/ngx-plyr
+        - cp LICENSE.md dist/ngx-plyr
+        - npx semantic-release

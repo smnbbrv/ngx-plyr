@@ -1,0 +1,17 @@
+{
+  "name": "ngx-plyr",
+  "license": "MIT",
+  "author": "smnbbrv",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smnbbrv/ngx-plyr"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "plyr": "^3.4.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

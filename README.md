@@ -1,27 +1,113 @@
-# NgxPlyrApp
+# ngx-plyr
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
+Angular 6+ bindings for [plyr video and audio player](https://github.com/sampotts/plyr).
 
-## Development server
+[![Build Status](https://img.shields.io/travis/smnbbrv/ngx-plyr/master.svg)](https://travis-ci.org/smnbbrv/ngx-plyr)
+[![Coverage Status](https://img.shields.io/coveralls/github/smnbbrv/ngx-plyr/master.svg)](https://coveralls.io/github/smnbbrv/ngx-plyr?branch=master)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Installation
 
-## Code scaffolding
+```sh
+npm i plyr ngx-plyr
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
 
-## Build
+Add `"node_modules/plyr/dist/plyr.css"` to the `styles` section of your `angular.json`:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```json
+"styles": [
+  "src/styles.scss",
+  "node_modules/plyr/dist/plyr.css"
+],
+```
 
-## Running unit tests
+Import `PlyrModule` into the current module's imports:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```ts
+import { PlyrModule } from 'ngx-plyr';
 
-## Running end-to-end tests
+imports: [
+  // ...
+  PlyrModule,
+],
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Finally use `plyr` in your components:
 
-## Further help
+```html
+<plyr style="display:block; width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlay)="played($event)"></plyr>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<button (click)="play()">Play</button>
+```
+
+```ts
+@ViewChild(PlyrComponent)
+plyr: PlyrComponent;
+
+videoSources: Plyr.Source[] = [
+  {
+    src: 'bTqVqk7FSmY',
+    provider: 'youtube',
+  },
+];
+
+played(event: Plyr.PlyrEvent) {
+  console.log('played', event);
+}
+
+play(): void {
+  this.plyr.player.play();
+}
+```
+
+## API
+
+The API mostly replicates the original Plyr API. See https://github.com/sampotts/plyr for more info
+
+### Inputs
+
+* plyrType: video or audio
+* plyrTitle: string
+* plyrPoster: poster URL
+* plyrSources: array of sources
+* plyrTracks: array of tracks
+
+### Events
+
+* plyrProgress: replicates original 'progress' event;
+* plyrPlaying: replicates original 'playing' event;
+* plyrPlay: replicates original 'play' event;
+* plyrPause: replicates original 'pause' event;
+* plyrTimeUpdate: replicates original 'timeupdate' event;
+* plyrVolumeChange: replicates original 'volumechange' event;
+* plyrSeeking: replicates original 'seeking' event;
+* plyrSeeked: replicates original 'seeked' event;
+* plyrRateChange: replicates original 'ratechange' event;
+* plyrEnded: replicates original 'ended' event;
+* plyrEnterFullScreen: replicates original 'enterfullscreen' event;
+* plyrExitFullScreen: replicates original 'exitfullscreen' event;
+* plyrCaptionsEnabled: replicates original 'captionsenabled' event;
+* plyrCaptionsDisabled: replicates original 'captionsdisabled' event;
+* plyrLanguageChange: replicates original 'languagechange' event;
+* plyrControlsHidden: replicates original 'controlshidden' event;
+* plyrControlsShown: replicates original 'controlsshown' event;
+* plyrReady: replicates original 'ready' event;
+
+* plyrLoadStart: replicates original 'loadstart' event;
+* plyrLoadedData: replicates original 'loadeddata' event;
+* plyrLoadedMetadata: replicates original 'loadedmetadata' event;
+* plyrQualityChange: replicates original 'qualitychange' event;
+* plyrCanPlay: replicates original 'canplay' event;
+* plyrCanPlayThrough: replicates original 'canplaythrough' event;
+* plyrStalled: replicates original 'stalled' event;
+* plyrWaiting: replicates original 'waiting' event;
+* plyrEmptied: replicates original 'emptied' event;
+* plyrCueChange: replicates original 'cuechange' event;
+* plyrError: replicates original 'error' event;
+
+* plyrStateChange: replicates original 'statechange' event;
+
+## License
+
+MIT

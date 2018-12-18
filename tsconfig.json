@@ -11,11 +11,20 @@
     "experimentalDecorators": true,
     "target": "es5",
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "typings"
     ],
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-plyr": [
+        "dist/ngx-plyr"
+      ],
+      "ngx-plyr/*": [
+        "dist/ngx-plyr/*"
+      ]
+    }
   }
 }
