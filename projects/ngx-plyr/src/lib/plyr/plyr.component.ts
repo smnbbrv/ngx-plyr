@@ -11,7 +11,7 @@ import { filter, switchMap } from 'rxjs/operators';
 })
 export class PlyrComponent implements AfterViewInit, OnDestroy {
 
-  playerChange = new BehaviorSubject<Plyr>(null);
+  private playerChange = new BehaviorSubject<Plyr>(null);
 
   get player(): Plyr {
     return this.playerChange.getValue();
@@ -31,7 +31,10 @@ export class PlyrComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('v') private vr: ElementRef;
 
-  // Standard Media Events
+  // ngx-plyr events
+  @Output() plyrPlayerInit = this.playerChange.pipe(filter(player => !!player)) as EventEmitter<Plyr>;
+
+  // standard media events
   @Output() plyrProgress = this.createLazyEvent('progress');
   @Output() plyrPlaying = this.createLazyEvent('playing');
   @Output() plyrPlay = this.createLazyEvent('play');
@@ -51,7 +54,7 @@ export class PlyrComponent implements AfterViewInit, OnDestroy {
   @Output() plyrControlsShown = this.createLazyEvent('controlsshown');
   @Output() plyrReady = this.createLazyEvent('ready');
 
-  // HTML5 only
+  // HTML5 events
   @Output() plyrLoadStart = this.createLazyEvent('loadstart');
   @Output() plyrLoadedData = this.createLazyEvent('loadeddata');
   @Output() plyrLoadedMetadata = this.createLazyEvent('loadedmetadata');
@@ -64,7 +67,7 @@ export class PlyrComponent implements AfterViewInit, OnDestroy {
   @Output() plyrCueChange = this.createLazyEvent('cuechange');
   @Output() plyrError = this.createLazyEvent('error');
 
-  // YouTube only
+  // YouTube events
   @Output() plyrStateChange = this.createLazyEvent('statechange');
 
   constructor(private ngZone: NgZone) { }
@@ -96,8 +99,7 @@ export class PlyrComponent implements AfterViewInit, OnDestroy {
 
   // see https://stackoverflow.com/a/53704102/1990451
   private createLazyEvent<T extends Plyr.PlyrEvent>(name: Plyr.StandardEvent | Plyr.Html5Event | Plyr.YoutubeEvent): EventEmitter<T> {
-    return this.playerChange.pipe(
-      filter(player => !!player),
+    return this.plyrPlayerInit.pipe(
       switchMap(() => new Observable(observer => this.on(name, (data: T) => this.ngZone.run(() => observer.next(data)))))
     ) as EventEmitter<T>;
   }

@@ -9,10 +9,14 @@ import { PlyrComponent } from '../../projects/ngx-plyr/src/lib/plyr/plyr.compone
 })
 export class AppComponent {
 
+  title = 'ngx-plyr example';
+
+  // get the component instance to have access to plyr instance
   @ViewChild(PlyrComponent)
   plyr: PlyrComponent;
 
-  title = 'ngx-plyr example';
+  // or get it from plyrPlayerInit event
+  player: Plyr;
 
   videoSources: Plyr.Source[] = [
     {
@@ -26,7 +30,7 @@ export class AppComponent {
   }
 
   play(): void {
-    this.plyr.player.play();
+    this.player.play(); // or this.plyr.player.play()
   }
 
 }

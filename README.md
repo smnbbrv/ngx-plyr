@@ -36,15 +36,15 @@ imports: [
 Finally use `plyr` in your components as attribute:
 
 ```html
-<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlay)="played($event)"></div>
+<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlayerInit)="player = $event" (plyrPlay)="played($event)"></div>
 
 <button (click)="play()">Play</button>
 ```
 
-or tag:
+or tag (remember that in this case `plyr` tag has `dipslay: inline` which cannot accept width, so you need to care of this):
 
 ```html
-<plyr style="display:block; width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlay)="played($event)"></plyr>
+<plyr style="display: block; width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlayerInit)="player = $event" (plyrPlay)="played($event)"></plyr>
 
 <button (click)="play()">Play</button>
 ```
@@ -52,8 +52,12 @@ or tag:
 and the component file would have
 
 ```ts
+// get the component instance to have access to plyr instance
 @ViewChild(PlyrComponent)
 plyr: PlyrComponent;
+
+// or get it from plyrPlayerInit event
+player: Plyr;
 
 videoSources: Plyr.Source[] = [
   {
@@ -67,7 +71,7 @@ played(event: Plyr.PlyrEvent) {
 }
 
 play(): void {
-  this.plyr.player.play();
+  this.player.play(); // or this.plyr.player.play()
 }
 ```
 
@@ -77,46 +81,48 @@ The API mostly replicates the original Plyr API. See https://github.com/sampotts
 
 ### Inputs
 
-* plyrType: video or audio
-* plyrTitle: string
-* plyrPoster: poster URL
-* plyrSources: array of sources
-* plyrTracks: array of tracks
+* **plyrType**: video or audio
+* **plyrTitle**: string
+* **plyrPoster**: poster URL
+* **plyrSources**: array of sources
+* **plyrTracks**: array of tracks
 
 ### Events
 
-* plyrProgress: replicates original 'progress' event;
-* plyrPlaying: replicates original 'playing' event;
-* plyrPlay: replicates original 'play' event;
-* plyrPause: replicates original 'pause' event;
-* plyrTimeUpdate: replicates original 'timeupdate' event;
-* plyrVolumeChange: replicates original 'volumechange' event;
-* plyrSeeking: replicates original 'seeking' event;
-* plyrSeeked: replicates original 'seeked' event;
-* plyrRateChange: replicates original 'ratechange' event;
-* plyrEnded: replicates original 'ended' event;
-* plyrEnterFullScreen: replicates original 'enterfullscreen' event;
-* plyrExitFullScreen: replicates original 'exitfullscreen' event;
-* plyrCaptionsEnabled: replicates original 'captionsenabled' event;
-* plyrCaptionsDisabled: replicates original 'captionsdisabled' event;
-* plyrLanguageChange: replicates original 'languagechange' event;
-* plyrControlsHidden: replicates original 'controlshidden' event;
-* plyrControlsShown: replicates original 'controlsshown' event;
-* plyrReady: replicates original 'ready' event;
+* **plyrPlayerInit**: emits a plyr instance when it gets created
 
-* plyrLoadStart: replicates original 'loadstart' event;
-* plyrLoadedData: replicates original 'loadeddata' event;
-* plyrLoadedMetadata: replicates original 'loadedmetadata' event;
-* plyrQualityChange: replicates original 'qualitychange' event;
-* plyrCanPlay: replicates original 'canplay' event;
-* plyrCanPlayThrough: replicates original 'canplaythrough' event;
-* plyrStalled: replicates original 'stalled' event;
-* plyrWaiting: replicates original 'waiting' event;
-* plyrEmptied: replicates original 'emptied' event;
-* plyrCueChange: replicates original 'cuechange' event;
-* plyrError: replicates original 'error' event;
+* **plyrProgress**: replicates original *progress* event
+* **plyrPlaying**: replicates original *playing* event
+* **plyrPlay**: replicates original *play* event
+* **plyrPause**: replicates original *pause* event
+* **plyrTimeUpdate**: replicates original *timeupdate* event
+* **plyrVolumeChange**: replicates original *volumechange* event
+* **plyrSeeking**: replicates original *seeking* event
+* **plyrSeeked**: replicates original *seeked* event
+* **plyrRateChange**: replicates original *ratechange* event
+* **plyrEnded**: replicates original *ended* event
+* **plyrEnterFullScreen**: replicates original *enterfullscreen* event
+* **plyrExitFullScreen**: replicates original *exitfullscreen* event
+* **plyrCaptionsEnabled**: replicates original *captionsenabled* event
+* **plyrCaptionsDisabled**: replicates original *captionsdisabled* event
+* **plyrLanguageChange**: replicates original *languagechange* event
+* **plyrControlsHidden**: replicates original *controlshidden* event
+* **plyrControlsShown**: replicates original *controlsshown* event
+* **plyrReady**: replicates original *ready* event
 
-* plyrStateChange: replicates original 'statechange' event;
+* **plyrLoadStart**: replicates original *loadstart* event
+* **plyrLoadedData**: replicates original *loadeddata* event
+* **plyrLoadedMetadata**: replicates original *loadedmetadata* event
+* **plyrQualityChange**: replicates original *qualitychange* event
+* **plyrCanPlay**: replicates original *canplay* event
+* **plyrCanPlayThrough**: replicates original *canplaythrough* event
+* **plyrStalled**: replicates original *stalled* event
+* **plyrWaiting**: replicates original *waiting* event
+* **plyrEmptied**: replicates original *emptied* event
+* **plyrCueChange**: replicates original *cuechange* event
+* **plyrError**: replicates original *error* event
+
+* **plyrStateChange: replicates original *statechange* event
 
 ## License
 
