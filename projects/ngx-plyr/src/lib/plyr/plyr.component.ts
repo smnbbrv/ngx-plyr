@@ -1,7 +1,16 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnDestroy, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, ViewChild, SimpleChange, SimpleChanges } from '@angular/core';
 import Plyr from 'plyr';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { filter, switchMap, first } from 'rxjs/operators';
+
+interface PlyrSimpleChanges extends SimpleChanges {
+  plyrType: SimpleChange;
+  plyrTitle: SimpleChange;
+  plyrPoster: SimpleChange;
+  plyrSources: SimpleChange;
+  plyrTracks: SimpleChange;
+  plyrOptions: SimpleChange;
+}
 
 @Component({
   selector: 'plyr, [plyr]', // tslint:disable-line
@@ -9,7 +18,7 @@ import { filter, switchMap } from 'rxjs/operators';
   styleUrls: ['./plyr.component.css'],
   exportAs: 'plyr'
 })
-export class PlyrComponent implements AfterViewInit, OnDestroy {
+export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private playerChange = new BehaviorSubject<Plyr>(null);
 
@@ -29,10 +38,12 @@ export class PlyrComponent implements AfterViewInit, OnDestroy {
 
   @Input() private plyrTracks: Plyr.Track[];
 
+  @Input() private plyrOptions: Plyr.Options;
+
   @ViewChild('v') private vr: ElementRef;
 
   // ngx-plyr events
-  @Output() plyrPlayerInit = this.playerChange.pipe(filter(player => !!player)) as EventEmitter<Plyr>;
+  @Output() plyrInit = this.playerChange.pipe(filter(player => !!player)) as EventEmitter<Plyr>;
 
   // standard media events
   @Output() plyrProgress = this.createLazyEvent('progress');
@@ -70,16 +81,45 @@ export class PlyrComponent implements AfterViewInit, OnDestroy {
   // YouTube events
   @Output() plyrStateChange = this.createLazyEvent('statechange');
 
+  private subscriptions: Subscription[] = [];
+
   constructor(private ngZone: NgZone) { }
 
-  ngOnDestroy(): void {
+  ngOnChanges(changes: PlyrSimpleChanges) {
+    this.subscriptions.push(this.plyrInit.pipe(first()).subscribe((player: Plyr) => {
+      if (changes.plyrOptions) {
+        this.initPlyr(true);
+      } else {
+        this.updatePlyrSource(player);
+      }
+    }));
+  }
+
+  ngOnDestroy() {
     this.destroyPlayer();
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   ngAfterViewInit() {
-    this.initLib();
+    this.initPlyr();
+  }
 
-    this.player.source = {
+  private initPlyr(force = false) {
+    if (force || !this.player) {
+      this.ngZone.runOutsideAngular(() => {
+        this.destroyPlayer();
+
+        const newPlayer = new Plyr(this.vr.nativeElement, this.plyrOptions);
+
+        this.updatePlyrSource(newPlayer);
+
+        this.playerChange.next(newPlayer);
+      });
+    }
+  }
+
+  private updatePlyrSource(player: Plyr) {
+    player.source = {
       type: this.plyrType,
       title: this.plyrTitle,
       sources: this.plyrSources,
@@ -88,18 +128,9 @@ export class PlyrComponent implements AfterViewInit, OnDestroy {
     };
   }
 
-  private initLib() {
-    if (!this.player) {
-      this.ngZone.runOutsideAngular(() => {
-        this.destroyPlayer();
-        this.playerChange.next(new Plyr(this.vr.nativeElement));
-      });
-    }
-  }
-
   // see https://stackoverflow.com/a/53704102/1990451
   private createLazyEvent<T extends Plyr.PlyrEvent>(name: Plyr.StandardEvent | Plyr.Html5Event | Plyr.YoutubeEvent): EventEmitter<T> {
-    return this.plyrPlayerInit.pipe(
+    return this.plyrInit.pipe(
       switchMap(() => new Observable(observer => this.on(name, (data: T) => this.ngZone.run(() => observer.next(data)))))
     ) as EventEmitter<T>;
   }

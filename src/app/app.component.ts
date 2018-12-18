@@ -15,7 +15,7 @@ export class AppComponent {
   @ViewChild(PlyrComponent)
   plyr: PlyrComponent;
 
-  // or get it from plyrPlayerInit event
+  // or get it from plyrInit event
   player: Plyr;
 
   videoSources: Plyr.Source[] = [

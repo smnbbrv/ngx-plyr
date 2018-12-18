@@ -1,5 +1,5 @@
 <h1>{{ title }}</h1>
 
-<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlayerInit)="player = $event" (plyrPlay)="played($event)"></div>
+<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
 
 <button (click)="play()">Play</button>

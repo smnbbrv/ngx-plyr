@@ -36,7 +36,7 @@ imports: [
 Finally use `plyr` in your components as attribute:
 
 ```html
-<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlayerInit)="player = $event" (plyrPlay)="played($event)"></div>
+<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
 
 <button (click)="play()">Play</button>
 ```
@@ -44,7 +44,7 @@ Finally use `plyr` in your components as attribute:
 or tag (remember that in this case `plyr` tag has `dipslay: inline` which cannot accept width, so you need to care of this):
 
 ```html
-<plyr style="display: block; width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrPlayerInit)="player = $event" (plyrPlay)="played($event)"></plyr>
+<plyr style="display: block; width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>
 
 <button (click)="play()">Play</button>
 ```
@@ -56,7 +56,7 @@ and the component file would have
 @ViewChild(PlyrComponent)
 plyr: PlyrComponent;
 
-// or get it from plyrPlayerInit event
+// or get it from plyrInit event
 player: Plyr;
 
 videoSources: Plyr.Source[] = [
@@ -81,15 +81,22 @@ The API mostly replicates the original Plyr API. See https://github.com/sampotts
 
 ### Inputs
 
-* **plyrType**: video or audio
-* **plyrTitle**: string
-* **plyrPoster**: poster URL
-* **plyrSources**: array of sources
-* **plyrTracks**: array of tracks
+* **plyrType**: video or audio, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
+* **plyrTitle**: string, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
+* **plyrPoster**: poster URL, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
+* **plyrSources**: array of sources, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
+* **plyrTracks**: array of tracks, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
+* **plyrOptions**: [initial Plyr options](https://github.com/sampotts/plyr#options)
+
+> **Important**: changing `plyrOptions` will trigger the `Plyr` reinitialization, since these options cannot be changed on-the-fly (limitation of Plyr itself)
 
 ### Events
 
-* **plyrPlayerInit**: emits a plyr instance when it gets created
+ngx-plyr events:
+
+* **plyrInit**: emits a plyr instance when it gets created
+
+[plyr events:](https://github.com/sampotts/plyr#events)
 
 * **plyrProgress**: replicates original *progress* event
 * **plyrPlaying**: replicates original *playing* event
@@ -123,6 +130,14 @@ The API mostly replicates the original Plyr API. See https://github.com/sampotts
 * **plyrError**: replicates original *error* event
 
 * **plyrStateChange: replicates original *statechange* event
+
+## Getters and setters / Methods
+
+You can use standard [getters and setters](https://github.com/sampotts/plyr#getters-and-setters) and [methods](https://github.com/sampotts/plyr#methods) by getting `Plyr` instance from `plyrInit`.
+
+## Changelog
+
+[CHANGELOG.md](CHANGELOG.md)
 
 ## License
 
