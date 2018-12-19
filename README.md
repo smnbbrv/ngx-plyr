@@ -10,6 +10,9 @@ Angular 6+ bindings for [plyr video and audio player](https://github.com/sampott
 ```sh
 npm i plyr ngx-plyr
 ```
+## Demo
+
+Simple Stackblitz [Demo](https://stackblitz.com/edit/ngx-plyr) to use ngx-plyr.
 
 ## Usage
 
