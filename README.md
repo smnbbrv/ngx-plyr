@@ -84,7 +84,7 @@ The API mostly replicates the original Plyr API. See https://github.com/sampotts
 
 ### Inputs
 
-* **plyrType**: video or audio, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
+* **plyrType**: `video` or `audio`, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
 * **plyrTitle**: string, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
 * **plyrPoster**: poster URL, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
 * **plyrSources**: array of sources, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
