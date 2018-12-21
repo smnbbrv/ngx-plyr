@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/smnbbrv/ngx-plyr/compare/v1.1.0...v1.1.1) (2018-12-18)
+
+
+### Bug Fixes
+
+* add component export to public api, close [#1](https://github.com/smnbbrv/ngx-plyr/issues/1) ([5af440f](https://github.com/smnbbrv/ngx-plyr/commit/5af440f))
+
 # [1.1.0](https://github.com/smnbbrv/ngx-plyr/compare/v1.0.0...v1.1.0) (2018-12-18)
 
 
