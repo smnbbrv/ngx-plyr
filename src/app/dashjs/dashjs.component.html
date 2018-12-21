@@ -1,0 +1,9 @@
+<h2>dash.js</h2>
+
+<h3>Autoload</h3>
+
+<div style="width: 600px;" plyr [plyrDriver]="dashjsDriver1" [plyrOptions]="options" [plyrSources]="sources" [plyrPoster]="poster" (plyrInit)="plyr1 = $event"></div>
+
+<h3>Load on play</h3>
+
+<div style="width: 600px;" plyr [plyrDriver]="dashjsDriver2" [plyrOptions]="options" [plyrSources]="sources" [plyrPoster]="poster" (plyrInit)="plyr2 = $event" (plyrPlay)="played($event)"></div>

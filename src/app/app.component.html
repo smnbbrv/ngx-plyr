@@ -3,3 +3,11 @@
 <div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
 
 <button (click)="play()">Play</button>
+
+<hr>
+
+<app-hlsjs></app-hlsjs>
+
+<hr>
+
+<app-dashjs></app-dashjs>

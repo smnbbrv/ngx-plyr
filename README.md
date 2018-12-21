@@ -75,6 +75,8 @@ play(): void {
 }
 ```
 
+For using with hls.js and dash.js check the examples and implementation of this project's `src/app` folder.
+
 ## API
 
 The API mostly replicates the original Plyr API. See https://github.com/sampotts/plyr for more info
@@ -87,6 +89,8 @@ The API mostly replicates the original Plyr API. See https://github.com/sampotts
 * **plyrSources**: array of sources, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
 * **plyrTracks**: array of tracks, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
 * **plyrOptions**: [initial Plyr options](https://github.com/sampotts/plyr#options)
+
+* **plyrDriver**: see [custom plyr driver](#Custom Plyr driver)
 
 > **Important**: changing `plyrOptions` will trigger the `Plyr` reinitialization, since these options cannot be changed on-the-fly (limitation of Plyr itself)
 
@@ -134,6 +138,37 @@ ngx-plyr events:
 ## Getters and setters / Methods
 
 You can use standard [getters and setters](https://github.com/sampotts/plyr#getters-and-setters) and [methods](https://github.com/sampotts/plyr#methods) by getting `Plyr` instance from `plyrInit`.
+
+## Custom Plyr driver
+
+The library allows you to go in its heart by defining a custom Plyr driver. What it means: the hardest stuff is still done for you, but you can apply some actions in the critical points like creating the Plyr instance, updating and destroying it.
+
+This is the right place for integration with other libraries like hls.js, dash.js etc.
+
+The default implementation looks like this:
+
+```ts
+import Plyr from 'plyr';
+import { PlyrDriver, PlyrDriverCreateParams, PlyrDriverUpdateSourceParams, PlyrDriverDestroyParams } from './plyr-driver';
+
+export class DefaultPlyrDriver implements PlyrDriver {
+
+  create(params: PlyrDriverCreateParams) {
+    return new Plyr(params.videoElement, params.options);
+  }
+
+  updateSource(params: PlyrDriverUpdateSourceParams) {
+    params.plyr.source = params.source;
+  }
+
+  destroy(params: PlyrDriverDestroyParams) {
+    params.plyr.destroy();
+  }
+
+}
+```
+
+You can create your provider and pass it as input parameter to the `plyr` component.
 
 ## Changelog
 
