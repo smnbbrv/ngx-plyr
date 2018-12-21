@@ -24,15 +24,13 @@ jobs:
         - npm run test:app:ci
         - npm run test:lib:ci
         - npm run coveralls
-    - stage: build
+    - stage: deploy
       script:
         - npm run build:lib
         - cp README.md dist/ngx-plyr
         - cp LICENSE.md dist/ngx-plyr
         - npm run build:app
         - cp dist/ngx-plyr-app/index.html dist/ngx-plyr-app/404.html
-    - stage: deploy
-      script:
         - npx semantic-release
       deploy:
         - provider: pages
