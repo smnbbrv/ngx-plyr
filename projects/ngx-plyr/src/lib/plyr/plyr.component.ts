@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, ViewChild, SimpleChange, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import Plyr from 'plyr';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { filter, switchMap, first } from 'rxjs/operators';
+import { filter, first, switchMap } from 'rxjs/operators';
+import { DefaultPlyrDriver } from '../plyr-driver/default-plyr-driver';
+import { PlyrDriver } from '../plyr-driver/plyr-driver';
 
 interface PlyrSimpleChanges extends SimpleChanges {
   plyrType: SimpleChange;
@@ -27,6 +29,8 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   private events = new Map();
+
+  @Input() private plyrDriver: PlyrDriver;
 
   @Input() private plyrType: Plyr.MediaType = 'video';
 
@@ -83,12 +87,19 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private ngZone: NgZone) { }
+  private driver: PlyrDriver;
+
+  constructor(
+    private ngZone: NgZone,
+  ) {
+  }
 
   ngOnChanges(changes: PlyrSimpleChanges) {
     this.subscriptions.push(this.plyrInit.pipe(first()).subscribe((player: Plyr) => {
       if (changes.plyrOptions) {
-        this.initPlyr(true);
+        if (!changes.plyrOptions.firstChange) {
+          this.initPlyr(true);
+        }
       } else {
         this.updatePlyrSource(player);
       }
@@ -109,7 +120,12 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
       this.ngZone.runOutsideAngular(() => {
         this.destroyPlayer();
 
-        const newPlayer = new Plyr(this.vr.nativeElement, this.plyrOptions);
+        this.driver = this.plyrDriver || new DefaultPlyrDriver();
+
+        const newPlayer = this.driver.create({
+          videoElement: this.videoElement,
+          options: this.plyrOptions,
+        });
 
         this.updatePlyrSource(newPlayer);
 
@@ -118,14 +134,22 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
     }
   }
 
-  private updatePlyrSource(player: Plyr) {
-    player.source = {
-      type: this.plyrType,
-      title: this.plyrTitle,
-      sources: this.plyrSources,
-      poster: this.plyrPoster,
-      tracks: this.plyrTracks,
-    };
+  private get videoElement() {
+    return this.vr.nativeElement;
+  }
+
+  private updatePlyrSource(plyr: Plyr) {
+    this.driver.updateSource({
+      videoElement: this.videoElement,
+      plyr,
+      source: {
+        type: this.plyrType,
+        title: this.plyrTitle,
+        sources: this.plyrSources,
+        poster: this.plyrPoster,
+        tracks: this.plyrTracks,
+      },
+    });
   }
 
   // see https://stackoverflow.com/a/53704102/1990451
@@ -138,7 +162,9 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
   private destroyPlayer() {
     if (this.player) {
       Array.from(this.events.keys()).forEach(name => this.off(name));
-      this.player.destroy();
+      this.driver.destroy({
+        plyr: this.player,
+      });
     }
   }
 

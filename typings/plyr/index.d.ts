@@ -19,10 +19,7 @@ declare module 'plyr' {
   	 */
   	static supported(mediaType?: Plyr.MediaType, provider?: Plyr.Provider, playsInline?: boolean): Plyr.Support;
 
-  	constructor(targets: NodeList, options?: Plyr.Options);
-  	constructor(targets: HTMLElement, options?: Plyr.Options);
-  	constructor(targets: HTMLElement[], options?: Plyr.Options);
-  	constructor(targets: string, options?: Plyr.Options);
+  	constructor(targets: NodeList | HTMLElement | HTMLElement[] | string, options?: Plyr.Options);
 
   	/**
   	* Indicates if the current player is HTML5.
@@ -463,7 +460,9 @@ declare module 'plyr' {
   	}
 
   	export interface CaptionOptions {
-  		defaultActive?: boolean;
+      active?: boolean;
+      language?: string;
+      update?: boolean;
   	}
 
   	export interface StorageOptions {
