@@ -1,6 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { PlyrModule } from '../../projects/ngx-plyr/src/public_api';
+import { DashjsComponent } from './dashjs/dashjs.component';
+import { HlsjsComponent } from './hlsjs/hlsjs.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +11,9 @@ describe('AppComponent', () => {
         PlyrModule,
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        DashjsComponent,
+        HlsjsComponent,
       ],
     }).compileComponents();
   }));

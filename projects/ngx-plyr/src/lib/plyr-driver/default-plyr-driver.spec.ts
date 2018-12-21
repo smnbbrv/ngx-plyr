@@ -3,10 +3,8 @@ import Plyr from 'plyr';
 import { DefaultPlyrDriver } from './default-plyr-driver';
 
 describe('DefaultPlyrDriver', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
   it('should be created', () => {
-    const driver: DefaultPlyrDriver = TestBed.get(DefaultPlyrDriver);
+    const driver = new DefaultPlyrDriver();
     expect(driver).toBeTruthy();
   });
 
@@ -20,7 +18,7 @@ describe('DefaultPlyrDriver', () => {
 
   describe('create', () => {
     it('should created Plyr by a given video tag', () => {
-      const driver: DefaultPlyrDriver = TestBed.get(DefaultPlyrDriver);
+      const driver = new DefaultPlyrDriver();
       expect(driver.create({ videoElement: createVideo(), options: {} })).toBeTruthy();
       expect(driver.create({ videoElement: createVideo(), options: {} }) instanceof Plyr).toBeTruthy();
     });
@@ -28,7 +26,7 @@ describe('DefaultPlyrDriver', () => {
 
   describe('updateSource', () => {
     it('should assign Plyr source settings', () => {
-      const driver: DefaultPlyrDriver = TestBed.get(DefaultPlyrDriver);
+      const driver = new DefaultPlyrDriver();
       const videoElement = createVideo();
       const plyr = driver.create({ videoElement: createVideo(), options: {} });
 
@@ -48,7 +46,7 @@ describe('DefaultPlyrDriver', () => {
 
   describe('destroy', () => {
     it('should destroy Plyr instance', () => {
-      const driver: DefaultPlyrDriver = TestBed.get(DefaultPlyrDriver);
+      const driver = new DefaultPlyrDriver();
       const plyr = driver.create({ videoElement: createVideo(), options: {} });
 
       expect(() => driver.destroy({ plyr })).not.toThrow();
