@@ -24,9 +24,22 @@ jobs:
         - npm run test:app:ci
         - npm run test:lib:ci
         - npm run coveralls
-    - stage: deploy
+    - stage: build
       script:
         - npm run build:lib
         - cp README.md dist/ngx-plyr
         - cp LICENSE.md dist/ngx-plyr
+        - npm run build:app
+        - cp dist/ngx-plyr-app/index.html dist/ngx-plyr-app/404.html
+    - stage: deploy-lib
+      script:
         - npx semantic-release
+
+deploy:
+  - provider: pages
+    local-dir: dist/ngx-plyr-app
+    skip-cleanup: true
+    github-token: $GH_TOKEN
+    keep-history: true
+    on:
+      branch: master
