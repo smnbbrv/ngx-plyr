@@ -12,7 +12,9 @@ npm i plyr ngx-plyr
 ```
 ## Demo
 
-Simple Stackblitz [Demo](https://stackblitz.com/edit/ngx-plyr) to use ngx-plyr.
+[Demo page](https://smnbbrv.github.io/ngx-plyr/)
+
+[Stackblitz](https://stackblitz.com/edit/ngx-plyr) (could be used for creating issues)
 
 ## Usage
 
