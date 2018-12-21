@@ -173,7 +173,7 @@ export class DefaultPlyrDriver implements PlyrDriver {
 }
 ```
 
-You can create your provider and pass it as input parameter to the `plyr` component.
+You can create your own driver and pass it as input parameter to the `plyr` component.
 
 ## Changelog
 
