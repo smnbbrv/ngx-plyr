@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/smnbbrv/ngx-plyr/compare/v1.1.1...v1.2.0) (2018-12-21)
+
+
+### Features
+
+* add hls.js and dash.js example integrations ([53f8a51](https://github.com/smnbbrv/ngx-plyr/commit/53f8a51))
+* add plyr-driver ([8f6053f](https://github.com/smnbbrv/ngx-plyr/commit/8f6053f))
+
 ## [1.1.1](https://github.com/smnbbrv/ngx-plyr/compare/v1.1.0...v1.1.1) (2018-12-18)
 
 
