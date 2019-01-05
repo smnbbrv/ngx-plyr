@@ -13,7 +13,9 @@ npm i plyr ngx-plyr
 
 ## Demo
 
-Simple Stackblitz [Demo](https://stackblitz.com/edit/ngx-plyr) to use ngx-plyr.
+[Demo page](https://smnbbrv.github.io/ngx-plyr/)
+
+[Stackblitz](https://stackblitz.com/edit/ngx-plyr) (could be used for creating issues)
 
 ## Usage
 
@@ -94,7 +96,7 @@ The API mostly replicates the original Plyr API. See https://github.com/sampotts
 * **plyrTracks**: array of tracks, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
 * **plyrOptions**: [initial Plyr options](https://github.com/sampotts/plyr#options)
 
-* **plyrDriver**: see [custom plyr driver](#Custom Plyr driver)
+* **plyrDriver**: see [custom plyr driver](#custom-plyr-driver)
 
 > **Important**: changing `plyrOptions` will trigger the `Plyr` reinitialization, since these options cannot be changed on-the-fly (limitation of Plyr itself)
 
@@ -172,7 +174,7 @@ export class DefaultPlyrDriver implements PlyrDriver {
 }
 ```
 
-You can create your provider and pass it as input parameter to the `plyr` component.
+You can create your own driver and pass it as input parameter to the `plyr` component.
 
 ## Integrations
 
