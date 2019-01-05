@@ -8,7 +8,6 @@ import { DashjsComponent } from './dashjs/dashjs.component';
 import { HlsjsComponent } from './hlsjs/hlsjs.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-
 @NgModule({
   declarations: [
     AppComponent,

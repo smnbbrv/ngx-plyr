@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { PlyrModule } from '../../../projects/ngx-plyr/src/public_api';
+import { TestingModule } from '../testing.module';
 import { HlsjsComponent } from './hlsjs.component';
 
 describe('HlsjsComponent', () => {
@@ -9,7 +9,7 @@ describe('HlsjsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        PlyrModule,
+        TestingModule,
       ],
       declarations: [HlsjsComponent]
     })

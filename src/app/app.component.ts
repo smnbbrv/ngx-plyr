@@ -9,8 +9,6 @@ import { PlyrComponent } from '../../projects/ngx-plyr/src/lib/plyr/plyr.compone
 })
 export class AppComponent {
 
-  title = 'ngx-plyr example';
-
   // get the component instance to have access to plyr instance
   @ViewChild(PlyrComponent)
   plyr: PlyrComponent;

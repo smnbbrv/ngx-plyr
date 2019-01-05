@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PlyrModule } from '../../../projects/ngx-plyr/src/public_api';
+import { TestingModule } from '../testing.module';
 import { DashjsComponent } from './dashjs.component';
 
 describe('DashjsComponent', () => {
@@ -9,7 +10,7 @@ describe('DashjsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        PlyrModule,
+        TestingModule,
       ],
       declarations: [ DashjsComponent ]
     })

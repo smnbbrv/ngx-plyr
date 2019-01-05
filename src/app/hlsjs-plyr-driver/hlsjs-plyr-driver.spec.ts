@@ -1,4 +1,3 @@
-import { TestBed } from '@angular/core/testing';
 import { HlsjsPlyrDriver } from './hlsjs-plyr-driver';
 
 describe('HlsjsPlyrDriver', () => {
