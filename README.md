@@ -1,6 +1,6 @@
 # ngx-plyr
 
-Angular 6+ bindings for [plyr video and audio player](https://github.com/sampotts/plyr).
+Angular 6+ bindings for [plyr video and audio player](https://github.com/sampotts/plyr). Supports everything that original library supports.
 
 [![Build Status](https://img.shields.io/travis/smnbbrv/ngx-plyr/master.svg)](https://travis-ci.org/smnbbrv/ngx-plyr)
 [![Coverage Status](https://img.shields.io/coveralls/github/smnbbrv/ngx-plyr/master.svg)](https://coveralls.io/github/smnbbrv/ngx-plyr?branch=master)
@@ -10,6 +10,7 @@ Angular 6+ bindings for [plyr video and audio player](https://github.com/sampott
 ```sh
 npm i plyr ngx-plyr
 ```
+
 ## Demo
 
 Simple Stackblitz [Demo](https://stackblitz.com/edit/ngx-plyr) to use ngx-plyr.
@@ -172,6 +173,10 @@ export class DefaultPlyrDriver implements PlyrDriver {
 ```
 
 You can create your provider and pass it as input parameter to the `plyr` component.
+
+## Integrations
+
+To integrate the library with hls.js and dash.js see the corresponding [demo source code](https://github.com/smnbbrv/ngx-plyr/tree/master/src/app). To integrate others, use same approach with a custom Plyr driver.
 
 ## Changelog
 

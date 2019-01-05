@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Plyr from 'plyr';
 import { HlsjsPlyrDriver } from '../hlsjs-plyr-driver/hlsjs-plyr-driver';
-import { PlyrDriver } from '../../../projects/ngx-plyr/src/public_api';
 
 @Component({
   selector: 'app-hlsjs',

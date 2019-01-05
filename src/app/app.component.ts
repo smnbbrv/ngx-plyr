@@ -33,4 +33,12 @@ export class AppComponent {
     this.player.play(); // or this.plyr.player.play()
   }
 
+  pause(): void {
+    this.player.pause(); // or this.plyr.player.play()
+  }
+
+  stop(): void {
+    this.player.stop(); // or this.plyr.player.stop()
+  }
+
 }

@@ -1,13 +1,41 @@
-<h1>{{ title }}</h1>
+<mat-toolbar color="primary" class="mat-elevation-z5">
+  ngx-plyr
+</mat-toolbar>
 
-<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
+<div class="wrapper mat-typography" fxLayout="column" fxLayoutGap="32px">
+  <h1>ngx-plyr: plyr for angular</h1>
 
-<button (click)="play()">Play</button>
+  <p>Here you can find various demos for <a href="https://github.com/smnbbrv/ngx-plyr">ngx-plyr</a></p>
 
-<hr>
+  <mat-card style="width: 640px;">
+    <mat-card-title>Youtube</mat-card-title>
+    <mat-card-subtitle>Plyr with Yotube video as a source</mat-card-subtitle>
+    <div mat-card-image plyr plyrTitle="Video 1" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="play()">
+        <mat-icon>play_arrow</mat-icon>
+        Play
+      </button>
 
-<app-hlsjs></app-hlsjs>
+      <button mat-raised-button color="accent" (click)="pause()">
+        <mat-icon>pause</mat-icon>
+        Pause
+      </button>
 
-<hr>
+      <button mat-raised-button color="accent" (click)="stop()">
+        <mat-icon>stop</mat-icon>
+        Stop
+      </button>
 
-<app-dashjs></app-dashjs>
+      <a mat-raised-button color="primary" href="https://github.com/smnbbrv/ngx-plyr/tree/master/src/app">Source code</a>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-divider></mat-divider>
+
+  <app-hlsjs></app-hlsjs>
+
+  <mat-divider></mat-divider>
+
+  <app-dashjs></app-dashjs>
+</div>
