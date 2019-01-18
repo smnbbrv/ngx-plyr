@@ -506,7 +506,8 @@ declare module 'plyr' {
   		* The MIME type of the media file (if HTML5).
   		*/
   		type?: string;
-  		provider?: Provider;
+      provider?: Provider;
+      size?: number;
   	}
 
   	export type TrackKind = "subtitles" | "captions" | "descriptions" | "chapters" | "metadata";
