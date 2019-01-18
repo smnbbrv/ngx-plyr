@@ -16,6 +16,20 @@ export class AppComponent {
   // or get it from plyrInit event
   player: Plyr;
 
+  youtubeSources = [
+    {
+      src: 'https://youtube.com/watch?v=bTqVqk7FSmY',
+      provider: 'youtube',
+    },
+  ];
+
+  vimeoSources = [
+    {
+      src: 'https://vimeo.com/76979871',
+      provider: 'vimeo',
+    },
+  ];
+
   videoSources: Plyr.Source[] = [
     {
       src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
@@ -37,6 +51,24 @@ export class AppComponent {
       type: 'video/mp4',
       size: 1440,
     },
+  ];
+
+  poster = 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg';
+
+  tracks = [
+    {
+      kind: 'captions',
+      label: 'English',
+      srclang: 'en',
+      src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt',
+      default: true,
+    },
+    {
+      kind: 'captions',
+      label: 'French',
+      srclang: 'fr',
+      src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt',
+    }
   ];
 
   played(event: Plyr.PlyrEvent) {
