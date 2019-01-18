@@ -16,6 +16,17 @@ export class AppComponent {
   // or get it from plyrInit event
   player: Plyr;
 
+  audioSources = [
+    {
+      src: 'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
+      type: 'audio/mp3',
+    },
+    {
+      src: 'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.ogg',
+      type: 'audio/ogg',
+    },
+  ];
+
   youtubeSources = [
     {
       src: 'https://youtube.com/watch?v=bTqVqk7FSmY',
