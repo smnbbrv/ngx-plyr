@@ -4,6 +4,7 @@ Angular 6+ bindings for [plyr video and audio player](https://github.com/sampott
 
 [![Build Status](https://img.shields.io/travis/smnbbrv/ngx-plyr/master.svg)](https://travis-ci.org/smnbbrv/ngx-plyr)
 [![Coverage Status](https://img.shields.io/coveralls/github/smnbbrv/ngx-plyr/master.svg)](https://coveralls.io/github/smnbbrv/ngx-plyr?branch=master)
+[![npm version](https://badge.fury.io/js/ngx-plyr.svg)](https://badge.fury.io/js/ngx-plyr)
 
 ## Installation
 

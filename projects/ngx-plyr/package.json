@@ -1,7 +1,16 @@
 {
   "name": "ngx-plyr",
-  "license": "MIT",
+  "keywords": [
+    "ngx-plyr",
+    "ng-plyr",
+    "plyr",
+    "angular",
+    "player",
+    "video",
+    "audio"
+  ],
   "author": "smnbbrv",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/smnbbrv/ngx-plyr"
