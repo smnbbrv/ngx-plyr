@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/smnbbrv/ngx-plyr/compare/v1.2.0...v1.2.1) (2019-04-08)
+
+
+### Bug Fixes
+
+* add keywords & badge for NPM ([a882108](https://github.com/smnbbrv/ngx-plyr/commit/a882108))
+
 # [1.2.0](https://github.com/smnbbrv/ngx-plyr/compare/v1.1.1...v1.2.0) (2018-12-21)
 
 
