@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, Renderer2, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import Plyr from 'plyr';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { filter, first, switchMap } from 'rxjs/operators';
@@ -89,8 +89,12 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private driver: PlyrDriver;
 
+  private videoElement: HTMLVideoElement;
+
   constructor(
+    private elementRef: ElementRef<HTMLDivElement>,
     private ngZone: NgZone,
+    private renderer: Renderer2,
   ) {
   }
 
@@ -122,6 +126,8 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
 
         this.driver = this.plyrDriver || new DefaultPlyrDriver();
 
+        this.ensureVideoElement();
+
         const newPlayer = this.driver.create({
           videoElement: this.videoElement,
           options: this.plyrOptions,
@@ -132,10 +138,6 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
         this.playerChange.next(newPlayer);
       });
     }
-  }
-
-  private get videoElement() {
-    return this.vr.nativeElement;
   }
 
   private updatePlyrSource(plyr: Plyr) {
@@ -162,9 +164,32 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
   private destroyPlayer() {
     if (this.player) {
       Array.from(this.events.keys()).forEach(name => this.off(name));
+
       this.driver.destroy({
         plyr: this.player,
       });
+
+      this.videoElement = null;
+    }
+  }
+
+  private get hostElement() {
+    return this.elementRef.nativeElement;
+  }
+
+  // this method is required because the plyr inserts clone of the original element on destroy
+  // so we catch the clone element right here and reuse it
+  private ensureVideoElement() {
+    const videoElement = this.hostElement.querySelector('video');
+
+    if (videoElement) {
+      this.videoElement = videoElement;
+    } else {
+      this.videoElement = this.renderer.createElement('video');
+      this.videoElement.controls = true;
+      this.videoElement.setAttribute('crossorigin', '');
+      this.videoElement.setAttribute('playsinline', '');
+      this.renderer.appendChild(this.hostElement, this.videoElement);
     }
   }
 

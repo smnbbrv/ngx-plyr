@@ -1,5 +1,5 @@
 import Plyr from 'plyr';
-import { PlyrDriver, PlyrDriverCreateParams, PlyrDriverUpdateSourceParams, PlyrDriverDestroyParams } from './plyr-driver';
+import { PlyrDriver, PlyrDriverCreateParams, PlyrDriverDestroyParams, PlyrDriverUpdateSourceParams } from './plyr-driver';
 
 export class DefaultPlyrDriver implements PlyrDriver {
 
