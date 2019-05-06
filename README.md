@@ -12,6 +12,12 @@ Angular 6+ bindings for [plyr video and audio player](https://github.com/sampott
 npm i plyr ngx-plyr
 ```
 
+## TypeScript typings
+
+As long as original plyr does not have yet (sigh) typings, this project has its own at typings/plyr/index.d.ts.
+
+If you have typings issues please refer to the issue #7 for more info.
+
 ## Demo
 
 [Demo page](https://smnbbrv.github.io/ngx-plyr/)
