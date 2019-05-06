@@ -165,6 +165,10 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
       this.driver.destroy({
         plyr: this.player,
       });
+      if (this.vr.nativeElement.plyr) {
+        delete this.vr.nativeElement.plyr;
+        this.vr.nativeElement = this.player.elements.original
+      }
     }
   }
 
