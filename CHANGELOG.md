@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/smnbbrv/ngx-plyr/compare/v1.2.1...v1.2.2) (2019-05-06)
+
+
+### Bug Fixes
+
+* plyr is recreated properly after options change, fix [#12](https://github.com/smnbbrv/ngx-plyr/issues/12) ([4f81dfc](https://github.com/smnbbrv/ngx-plyr/commit/4f81dfc))
+
 ## [1.2.1](https://github.com/smnbbrv/ngx-plyr/compare/v1.2.0...v1.2.1) (2019-04-08)
 
 
