@@ -16,8 +16,8 @@
     "url": "https://github.com/smnbbrv/ngx-plyr"
   },
   "peerDependencies": {
-    "@angular/common": ">=6.0.0",
-    "@angular/core": ">=6.0.0",
+    "@angular/common": ">=8.0.0",
+    "@angular/core": ">=8.0.0",
     "plyr": "^3.4.7"
   },
   "publishConfig": {

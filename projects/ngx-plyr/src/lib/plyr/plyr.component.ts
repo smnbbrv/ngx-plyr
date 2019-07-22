@@ -44,7 +44,7 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input() private plyrOptions: Plyr.Options;
 
-  @ViewChild('v') private vr: ElementRef;
+  @ViewChild('v', { static: false }) private vr: ElementRef;
 
   // ngx-plyr events
   @Output() plyrInit = this.playerChange.pipe(filter(player => !!player)) as EventEmitter<Plyr>;
