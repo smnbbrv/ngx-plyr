@@ -11,8 +11,9 @@
     <mat-card-title>Video</mat-card-title>
     <mat-card-subtitle>Plyr with custom video as a source</mat-card-subtitle>
 
-    <div mat-card-image plyr plyrTitle="Custom video" [plyrPoster]="poster" [plyrSources]="videoSources"
-      [plyrTracks]="tracks" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
+    <div mat-card-image plyr plyrTitle="Custom video" [plyrPlaysInline]="true" [plyrCrossOrigin]="true"
+      [plyrPoster]="poster" [plyrSources]="videoSources" [plyrTracks]="tracks" (plyrInit)="player = $event"
+      (plyrPlay)="played($event)"></div>
     <mat-card-actions>
       <button mat-raised-button color="accent" (click)="play()">
         <mat-icon>play_arrow</mat-icon>
@@ -39,7 +40,8 @@
     <mat-card-title>Audio</mat-card-title>
     <mat-card-subtitle>Plyr with audio as a source</mat-card-subtitle>
 
-    <div mat-card-image plyr plyrTitle="Audio" plyrType="audio" [plyrSources]="audioSources"></div>
+    <div mat-card-image plyr plyrTitle="Audio" plyrType="audio" [plyrPlaysInline]="true" [plyrCrossOrigin]="true"
+      [plyrSources]="audioSources"></div>
 
     <mat-card-actions>
       <a mat-raised-button color="primary" href="https://github.com/smnbbrv/ngx-plyr/tree/master/src/app">Source
@@ -56,7 +58,8 @@
       <mat-card-title>Youtube</mat-card-title>
       <mat-card-subtitle>Plyr with Yotube video as a source</mat-card-subtitle>
 
-      <div mat-card-image plyr plyrTitle="Video from Youtube" [plyrSources]="youtubeSources"></div>
+      <div mat-card-image plyr plyrTitle="Video from Youtube" [plyrSources]="youtubeSources">
+      </div>
 
       <mat-card-actions>
         <a mat-raised-button color="primary" href="https://github.com/smnbbrv/ngx-plyr/tree/master/src/app">Source

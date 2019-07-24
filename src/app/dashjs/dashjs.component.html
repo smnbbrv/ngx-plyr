@@ -4,7 +4,8 @@
   <mat-card style="width: 640px;">
     <mat-card-title>Load directly</mat-card-title>
     <mat-card-subtitle>stream is attached directly, the poster won't be shown</mat-card-subtitle>
-    <div mat-card-image plyr [plyrDriver]="dashjsDriver1" [plyrOptions]="options" [plyrSources]="sources" [plyrPoster]="poster"></div>
+    <div mat-card-image plyr [plyrPlaysInline]="true" [plyrCrossOrigin]="true" [plyrDriver]="dashjsDriver1" [plyrOptions]="options" [plyrSources]="sources"
+      [plyrPoster]="poster"></div>
     <mat-card-actions>
       <a mat-raised-button color="primary" href="https://github.com/smnbbrv/ngx-plyr/tree/master/src/app">
         Source code
@@ -15,7 +16,8 @@
   <mat-card style="width: 640px;">
     <mat-card-title>Load on play</mat-card-title>
     <mat-card-subtitle>stream is attached after "play" is clicked, the poster is shown</mat-card-subtitle>
-    <div mat-card-image plyr [plyrDriver]="dashjsDriver2" [plyrOptions]="options" [plyrSources]="sources" [plyrPoster]="poster" (plyrPlay)="played()"></div>
+    <div mat-card-image plyr [plyrPlaysInline]="true" [plyrCrossOrigin]="true" [plyrDriver]="dashjsDriver2"
+      [plyrOptions]="options" [plyrSources]="sources" [plyrPoster]="poster" (plyrPlay)="played()"></div>
     <mat-card-actions>
       <a mat-raised-button color="primary" href="https://github.com/smnbbrv/ngx-plyr/tree/master/src/app">
         Source code

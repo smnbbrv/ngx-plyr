@@ -49,7 +49,7 @@ imports: [
 Finally use `plyr` in your components as attribute:
 
 ```html
-<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
+<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
 
 <button (click)="play()">Play</button>
 ```
@@ -57,7 +57,7 @@ Finally use `plyr` in your components as attribute:
 or tag (remember that in this case `plyr` tag has `dipslay: inline` which cannot accept width, so you need to care of this):
 
 ```html
-<plyr style="display: block; width: 640px;" plyrTitle="Video 1" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>
+<plyr style="display: block; width: 640px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>
 
 <button (click)="play()">Play</button>
 ```
@@ -102,10 +102,11 @@ The API mostly replicates the original Plyr API. See https://github.com/sampotts
 * **plyrSources**: array of sources, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
 * **plyrTracks**: array of tracks, see [source setters](https://github.com/sampotts/plyr#the-source-setter)
 * **plyrOptions**: [initial Plyr options](https://github.com/sampotts/plyr#options)
-
+* **plyrPlaysInline**: whether underlying element has `playsinline` attribute, boolean
+* **plyrCrossOrigin**: [whether underlying element has `crossorigin` attribute, boolean
 * **plyrDriver**: see [custom plyr driver](#custom-plyr-driver)
 
-> **Important**: changing `plyrOptions` will trigger the `Plyr` reinitialization, since these options cannot be changed on-the-fly (limitation of Plyr itself)
+> **Important**: changing `plyrOptions`, `plyrPlaysInline` and `plyrCrossOrigin` will trigger the `Plyr` reinitialization, since these options cannot be changed on-the-fly
 
 ### Events
 

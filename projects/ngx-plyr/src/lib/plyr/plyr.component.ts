@@ -1,18 +1,9 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, Renderer2, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, Renderer2, SimpleChange, ViewChild } from '@angular/core';
 import Plyr from 'plyr';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { filter, first, switchMap } from 'rxjs/operators';
 import { DefaultPlyrDriver } from '../plyr-driver/default-plyr-driver';
 import { PlyrDriver } from '../plyr-driver/plyr-driver';
-
-interface PlyrSimpleChanges extends SimpleChanges {
-  plyrType: SimpleChange;
-  plyrTitle: SimpleChange;
-  plyrPoster: SimpleChange;
-  plyrSources: SimpleChange;
-  plyrTracks: SimpleChange;
-  plyrOptions: SimpleChange;
-}
 
 @Component({
   selector: 'plyr, [plyr]', // tslint:disable-line
@@ -30,19 +21,23 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private events = new Map();
 
-  @Input() private plyrDriver: PlyrDriver;
+  @Input() plyrDriver: PlyrDriver;
 
-  @Input() private plyrType: Plyr.MediaType = 'video';
+  @Input() plyrType: Plyr.MediaType = 'video';
 
-  @Input() private plyrTitle: string;
+  @Input() plyrTitle: string;
 
-  @Input() private plyrPoster: string;
+  @Input() plyrPoster: string;
 
-  @Input() private plyrSources: Plyr.Source[];
+  @Input() plyrSources: Plyr.Source[];
 
-  @Input() private plyrTracks: Plyr.Track[];
+  @Input() plyrTracks: Plyr.Track[];
 
-  @Input() private plyrOptions: Plyr.Options;
+  @Input() plyrOptions: Plyr.Options;
+
+  @Input() plyrCrossOrigin: boolean;
+
+  @Input() plyrPlaysInline: boolean;
 
   @ViewChild('v', { static: false }) private vr: ElementRef;
 
@@ -98,10 +93,10 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
   ) {
   }
 
-  ngOnChanges(changes: PlyrSimpleChanges) {
+  ngOnChanges(changes: { [p in keyof PlyrComponent]?: SimpleChange; }) {
     this.subscriptions.push(this.plyrInit.pipe(first()).subscribe((player: Plyr) => {
-      if (changes.plyrOptions) {
-        if (!changes.plyrOptions.firstChange) {
+      if (changes.plyrOptions || changes.plyrPlaysInline || changes.plyrCrossOrigin) {
+        if (!changes.plyrOptions.firstChange || !changes.plyrPlaysInline || !changes.plyrCrossOrigin) {
           this.initPlyr(true);
         }
       } else {
@@ -187,8 +182,15 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
     } else {
       this.videoElement = this.renderer.createElement('video');
       this.videoElement.controls = true;
-      this.videoElement.setAttribute('crossorigin', '');
-      this.videoElement.setAttribute('playsinline', '');
+
+      if (this.plyrCrossOrigin) {
+        this.videoElement.setAttribute('crossorigin', '');
+      }
+
+      if (this.plyrPlaysInline) {
+        this.videoElement.setAttribute('playsinline', '');
+      }
+
       this.renderer.appendChild(this.hostElement, this.videoElement);
     }
   }
