@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/smnbbrv/ngx-plyr/compare/v1.2.2...v2.0.0) (2019-07-22)
+
+
+### Features
+
+* upgrade to angular 8 ([f4a831e](https://github.com/smnbbrv/ngx-plyr/commit/f4a831e))
+
+
+### BREAKING CHANGES
+
+* angular 8 breaks the original behavior of ViewChild (and the library depends on it)
+
 ## [1.2.2](https://github.com/smnbbrv/ngx-plyr/compare/v1.2.1...v1.2.2) (2019-05-06)
 
 
