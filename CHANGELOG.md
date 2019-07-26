@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/smnbbrv/ngx-plyr/compare/v2.0.0...v3.0.0) (2019-07-24)
+
+
+### Features
+
+* turn playsinline and crossorigin attributes to be configurable as ngx-plyr parameters ([395ac3c](https://github.com/smnbbrv/ngx-plyr/commit/395ac3c))
+
+
+### BREAKING CHANGES
+
+* crossorigin and playsinline are no more set initially, please set the up manually as [plyrCrossOrigin]="true" and [plyrPlaysInline]="true"
+
 # [2.0.0](https://github.com/smnbbrv/ngx-plyr/compare/v1.2.2...v2.0.0) (2019-07-22)
 
 
