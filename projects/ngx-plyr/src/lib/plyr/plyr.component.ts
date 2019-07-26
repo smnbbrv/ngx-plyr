@@ -95,8 +95,10 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: { [p in keyof PlyrComponent]?: SimpleChange; }) {
     this.subscriptions.push(this.plyrInit.pipe(first()).subscribe((player: Plyr) => {
-      if (changes.plyrOptions || changes.plyrPlaysInline || changes.plyrCrossOrigin) {
-        if (!changes.plyrOptions.firstChange || !changes.plyrPlaysInline || !changes.plyrCrossOrigin) {
+      const reinitTriggers = [changes.plyrOptions, changes.plyrPlaysInline, changes.plyrCrossOrigin].filter(t => !!t);
+
+      if (reinitTriggers.length) {
+        if (reinitTriggers.some(t => !t.firstChange)) {
           this.initPlyr(true);
         }
       } else {
