@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import Plyr from 'plyr';
+import * as Plyr from 'plyr';
 import { DefaultPlyrDriver } from './default-plyr-driver';
 
 describe('DefaultPlyrDriver', () => {

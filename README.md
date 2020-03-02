@@ -162,7 +162,7 @@ This is the right place for integration with other libraries like hls.js, dash.j
 The default implementation looks like this:
 
 ```ts
-import Plyr from 'plyr';
+import * as Plyr from 'plyr';
 import { PlyrDriver, PlyrDriverCreateParams, PlyrDriverUpdateSourceParams, PlyrDriverDestroyParams } from './plyr-driver';
 
 export class DefaultPlyrDriver implements PlyrDriver {

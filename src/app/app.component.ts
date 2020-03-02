@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import Plyr from 'plyr';
+import * as Plyr from 'plyr';
 import { PlyrComponent } from '../../projects/ngx-plyr/src/lib/plyr/plyr.component';
 
 @Component({

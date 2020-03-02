@@ -18,7 +18,7 @@
   "peerDependencies": {
     "@angular/common": ">=8.0.0",
     "@angular/core": ">=8.0.0",
-    "plyr": "^3.4.7"
+    "plyr": "^3.5.10"
   },
   "publishConfig": {
     "access": "public"
