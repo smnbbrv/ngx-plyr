@@ -28,6 +28,7 @@ export class HlsjsPlyrDriver implements PlyrDriver {
   destroy(params: PlyrDriverDestroyParams) {
     params.plyr.destroy();
     this.hls.detachMedia();
+    this.hls.destroy();
   }
 
   load(src: string) {

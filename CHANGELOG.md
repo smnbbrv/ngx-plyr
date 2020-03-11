@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/smnbbrv/ngx-plyr/compare/v3.0.0...v3.0.1) (2019-07-26)
+
+
+### Bug Fixes
+
+* properly handle parameter changes ([de4a6d6](https://github.com/smnbbrv/ngx-plyr/commit/de4a6d6))
+
 # [3.0.0](https://github.com/smnbbrv/ngx-plyr/compare/v2.0.0...v3.0.0) (2019-07-24)
 
 
