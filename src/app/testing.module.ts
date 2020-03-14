@@ -6,7 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { PlyrModule } from '../../projects/ngx-plyr/src/public_api';
+import { PlyrModule } from 'ngx-plyr';
 
 const imports = [
   NoopAnimationsModule,

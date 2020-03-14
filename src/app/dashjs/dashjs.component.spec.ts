@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { PlyrModule } from '../../../projects/ngx-plyr/src/public_api';
 import { TestingModule } from '../testing.module';
 import { DashjsComponent } from './dashjs.component';
 
@@ -12,9 +11,9 @@ describe('DashjsComponent', () => {
       imports: [
         TestingModule,
       ],
-      declarations: [ DashjsComponent ]
+      declarations: [DashjsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
