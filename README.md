@@ -22,8 +22,6 @@ If you have typings issues please refer to the issue #7 for more info.
 
 [Demo page](https://smnbbrv.github.io/ngx-plyr/)
 
-[Stackblitz](https://stackblitz.com/edit/ngx-plyr) (could be used for creating issues)
-
 ## Usage
 
 Add `"node_modules/plyr/dist/plyr.css"` to the `styles` section of your `angular.json`:
