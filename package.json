@@ -5,14 +5,15 @@
     "ng": "ng",
     "start": "ng serve",
     "build:app": "ng build --prod",
-    "build:lib": "ng build ngx-plyr --prod",
+    "build:lib": "ng build ngx-plyr --prod && cp README.md dist/ngx-plyr && cp LICENSE.md dist/ngx-plyr",
     "test:app": "ng test ngx-plyr-app",
     "test:app:ci": "ng test ngx-plyr-app --watch=false --progress=false --browsers=ChromeHeadlessCI",
     "test:lib": "ng test ngx-plyr",
     "test:lib:ci": "ng test ngx-plyr --watch=false --progress=false --browsers=ChromeHeadlessCI --code-coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "release": "semantic-release"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +43,7 @@
     "@angular/cli": "~9.0.5",
     "@angular/compiler-cli": "~9.0.6",
     "@angular/language-service": "~9.0.6",
+    "@qiwi/semantic-release-gh-pages-plugin": "^1.15.9",
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/git": "^7.0.16",
     "@types/jasmine": "^3.3.14",

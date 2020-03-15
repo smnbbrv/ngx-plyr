@@ -17,6 +17,13 @@
         ],
         "message": "chore: release ${nextRelease.version} [ci skip]"
       }
+    ],
+    [
+      "@qiwi/semantic-release-gh-pages-plugin",
+      {
+        "msg": "chore: deployed gh-pages",
+        "src": "dist/ngx-plyr-app"
+      }
     ]
   ]
 }

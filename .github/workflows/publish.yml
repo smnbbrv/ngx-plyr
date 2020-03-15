@@ -1,0 +1,36 @@
+name: Push to master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  main:
+    name: Build & test & publish
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - name: Clone
+        uses: actions/checkout@v1
+      - name: Install node
+        uses: actions/setup-node@v1
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Test lib
+        run: npm run test:lib:ci
+      - name: Build lib
+        run: npm run build:lib
+      - name: Test demo app
+        run: npm run test:lib:ci
+      - name: Build demo app
+        run: npm run build:app
+      - name: Publish coverage
+        run: npm run coveralls
+      - name: Publish lib
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm run release
