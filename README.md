@@ -2,9 +2,9 @@
 
 Angular 6+ bindings for [plyr video and audio player](https://github.com/sampotts/plyr). Supports everything that original library supports.
 
-[![Build Status](https://img.shields.io/travis/smnbbrv/ngx-plyr/master.svg)](https://travis-ci.org/smnbbrv/ngx-plyr)
+![Workflow status](https://img.shields.io/github/workflow/status/smnbbrv/ngx-plyr/Push)
 [![Coverage Status](https://img.shields.io/coveralls/github/smnbbrv/ngx-plyr/master.svg)](https://coveralls.io/github/smnbbrv/ngx-plyr?branch=master)
-[![npm version](https://badge.fury.io/js/ngx-plyr.svg)](https://badge.fury.io/js/ngx-plyr)
+![@ngx-grpc/protoc-gen-ng npm version](https://img.shields.io/npm/v/ngx-plyr)
 
 ## Installation
 
@@ -90,7 +90,7 @@ For using with hls.js and dash.js check the examples and implementation of this 
 
 ## API
 
-The API mostly replicates the original Plyr API. See https://github.com/sampotts/plyr for more info
+The API mostly replicates the original Plyr API. See <https://github.com/sampotts/plyr> for more info
 
 ### Inputs
 
