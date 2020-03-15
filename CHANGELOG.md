@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/smnbbrv/ngx-plyr/compare/v3.0.1...v4.0.0) (2020-03-15)
+
+
+### Features
+
+* use original plyr typings ([adb27b7](https://github.com/smnbbrv/ngx-plyr/commit/adb27b777e0e6252d607d419af0d58566dc3e390))
+
+
+### BREAKING CHANGES
+
+* no typings are served by this repository any longer
+
 ## [3.0.1](https://github.com/smnbbrv/ngx-plyr/compare/v3.0.0...v3.0.1) (2019-07-26)
 
 
