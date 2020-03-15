@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build:app": "ng build --prod",
+    "build:app": "ng build --prod && cp dist/ngx-plyr-app/index.html dist/ngx-plyr-app/404.html",
     "build:lib": "ng build ngx-plyr --prod && cp README.md dist/ngx-plyr && cp LICENSE.md dist/ngx-plyr",
     "test:app": "ng test ngx-plyr-app",
     "test:app:ci": "ng test ngx-plyr-app --watch=false --progress=false --browsers=ChromeHeadlessCI",
