@@ -42,7 +42,6 @@
     "@angular/cli": "~9.0.5",
     "@angular/compiler-cli": "~9.0.6",
     "@angular/language-service": "~9.0.6",
-    "@qiwi/semantic-release-gh-pages-plugin": "^1.15.9",
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/git": "^7.0.16",
     "@types/jasmine": "^3.3.14",

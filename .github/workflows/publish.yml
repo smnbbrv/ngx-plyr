@@ -35,6 +35,12 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Github Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.GITHUB_PAGES_ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist/ngx-plyr-app
       - name: Publish lib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
