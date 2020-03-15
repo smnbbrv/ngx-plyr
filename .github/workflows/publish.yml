@@ -24,7 +24,7 @@ jobs:
       - name: Build lib
         run: npm run build:lib
       - name: Test demo app
-        run: npm run test:lib:ci
+        run: npm run test:app:ci
       - name: Build demo app
         run: npm run build:app
       - name: Publish coverage
