@@ -52,7 +52,7 @@ Finally use `plyr` in your components as attribute:
 <button (click)="play()">Play</button>
 ```
 
-or tag (remember that in this case `plyr` tag has `dipslay: inline` which cannot accept width, so you need to care of this):
+or tag (remember that in this case `plyr` tag has `display: inline` which cannot accept width, so you need to care of this):
 
 ```html
 <plyr style="display: block; width: 640px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>
