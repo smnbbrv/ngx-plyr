@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/smnbbrv/ngx-plyr/compare/v4.0.0...v4.0.1) (2022-07-22)
+
+
+### Bug Fixes
+
+* **readme:** tiny typo in readme ([3714624](https://github.com/smnbbrv/ngx-plyr/commit/3714624dc6d3a32d265aa3b8c7f97ea913d77e54))
+
 # [4.0.0](https://github.com/smnbbrv/ngx-plyr/compare/v3.0.1...v4.0.0) (2020-03-15)
 
 
