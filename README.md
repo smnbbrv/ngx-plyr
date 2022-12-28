@@ -1,4 +1,6 @@
-# ngx-plyr
+# Deprecated: not maintained
+
+## ngx-plyr
 
 Angular 6+ bindings for [plyr video and audio player](https://github.com/sampotts/plyr). Supports everything that original library supports.
 
